@@ -1,0 +1,85 @@
+#!/bin/bash
+#  Enable / Disable / Status the codeready-builder(CRB) or equivalent repo.
+
+###############
+# Show help
+###############
+usage() {
+  echo "Usage `basename $0` [ enable | disable | status ] " >&2
+  echo >&2
+  echo "Enable, Disable, or give the status of the CodeReady Builder (CRB) repo" >&2
+  echo >&2
+  echo "Options:" >&2
+  echo "  enable" >&2
+  echo "    Enable the CRB repo" >&2
+  echo "  disable" >&2
+  echo "    Disable the CRB repo" >&2
+  echo "  status" >&2
+  echo "    Show if rhe CRB repo is enabled or disabled" >&2
+  echo "  help" >&2
+  echo "    Show this options menu" >&2
+  echo >&2
+  popd &>/dev/null
+  exit 1
+}
+
+
+# Show the status
+show_status()(
+    # Determine if a version of CRB is enabled
+    crb_repo=$(dnf repolist | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt | awk '{print $1}')
+    if [ "${crb_repo}" == "" ] ; then
+        echo "CRB repo is disabled"
+    else
+        echo "CRB repo is enabled and named: ${crb_repo}"
+    fi
+)
+
+# Enable or Disable the repo
+enable_disable_repo(){
+    command="$1"
+    # Determine which repo we need to change
+    crb_repo=$(dnf repolist --all | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt | awk '{print $1}')
+
+    # Determine if we are on RHEL or not, then do the correct steps
+    source /etc/os-release
+    if [[ "${NAME}" =~ "Red Hat" ]] ; then
+        subscription-manager repos ${command} ${crb_repo}
+    else
+        # Determine if dnf-command(config-manager) is installed
+        if ! rpm -q --whatprovides 'dnf-command(config-manager)' > /dev/null 2>&1 ; then
+            echo "Error: Please run: dnf install 'dnf-command(config-manager)'" >&2
+            echo "       before trying to enable/disable the CRB repo." >&2
+            echo "Aborting"'!' >&2
+            exit 1
+        fi
+        # Everything else uses dnf config-manager
+        dnf config-manager ${command} ${crb_repo}
+    fi
+}
+
+###############
+# Get our arguments
+###############
+key="$1"
+case $key in
+enable | --enable )
+    echo "Enabling CRB repo"
+    enable_disable_repo --enable
+    show_status
+;;
+disable | --disable )
+    echo "Disabling CRB repo"
+    enable_disable_repo --disable
+    show_status
+;;
+status | --status )
+    show_status
+;;
+* )
+    usage
+    exit 2
+;;
+esac
+
+exit 0

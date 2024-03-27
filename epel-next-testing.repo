@@ -1,0 +1,30 @@
+[epel-next-testing]
+name=Extra Packages for Enterprise Linux $releasever - Next - Testing - $basearch
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+#baseurl=https://download.example/pub/epel/testing/next/$releasever/Everything/$basearch/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-next-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+
+[epel-next-testing-debuginfo]
+name=Extra Packages for Enterprise Linux $releasever - Next - Testing - $basearch - Debug
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+#baseurl=https://download.example/pub/epel/testing/next/$releasever/Everything/$basearch/debug/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-next-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+gpgcheck=1
+
+[epel-next-testing-source]
+name=Extra Packages for Enterprise Linux $releasever - Next - Testing - $basearch - Source
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+#baseurl=https://download.example/pub/epel/testing/next/$releasever/Everything/source/tree/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-next-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+gpgcheck=1
