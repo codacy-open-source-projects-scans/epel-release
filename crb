@@ -27,7 +27,7 @@ usage() {
 # Show the status
 show_status()(
     # Determine if a version of CRB is enabled
-    crb_repo=$(dnf repolist | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt | awk '{print $1}')
+    crb_repo=$(dnf repolist | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt -e rhui | awk '{print $1}')
     if [ "${crb_repo}" == "" ] ; then
         echo "CRB repo is disabled"
     else
@@ -39,7 +39,7 @@ show_status()(
 enable_disable_repo(){
     command="$1"
     # Determine which repo we need to change
-    crb_repo=$(dnf repolist --all | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt | awk '{print $1}')
+    crb_repo=$(dnf repolist --all | grep -i -e crb -e powertools -e codeready | grep -v -i -e debug -e source -e eus -e virt -e rhui | awk '{print $1}')
 
     # Determine if we are on RHEL or not, then do the correct steps
     source /etc/os-release

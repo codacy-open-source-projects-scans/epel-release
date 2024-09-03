@@ -6,7 +6,7 @@
 
 Name:           epel-release
 Version:        9
-Release:        7%{dist}
+Release:        8%{dist}
 Summary:        Extra Packages for Enterprise Linux repository configuration
 License:        GPLv2
 
@@ -133,6 +133,9 @@ fi
 
 
 %changelog
+* Fri Aug 30 2024 Troy Dawson <tdawson@redhat.com> - 9-8
+- Tweak crb script. Fix for RHEL rhui repos (#2308671)
+
 * Thu Aug 17 2023 Neal Gompa <ngompa@fedoraproject.org> - 9-7
 - Fix typo to actually enable EPEL OpenH264 repo
 
