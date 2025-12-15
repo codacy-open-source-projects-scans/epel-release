@@ -1,0 +1,5 @@
+# See https://docs.fedoraproject.org/en-US/packaging-guidelines/DefaultServices/
+# for the Fedora policy.  EPEL follows the same policy.  The EPEL Steering
+# Committee can approve exceptions to the policy, which will be defined in this
+# file.
+
