@@ -2,8 +2,8 @@
 name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch
 # It is much more secure to use the metalink, but if you wish to use a local mirror
 # place its address here.
-#baseurl=https://download.example/pub/epel/testing/$releasever${releasever_minor:+z}/Everything/$basearch/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel${releasever_minor:+-z}-testing-$releasever&arch=$basearch
+#baseurl=https://download.example/pub/epel/testing/$releasever${stream:+s}/Everything/$basearch/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-$releasever${stream:+s}&arch=$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever_major
 gpgcheck=1
 repo_gpgcheck=0
@@ -15,8 +15,8 @@ enabled=0
 name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch - Debug
 # It is much more secure to use the metalink, but if you wish to use a local mirror
 # place its address here.
-#baseurl=https://download.example/pub/epel/testing/$releasever${releasever_minor:+z}/Everything/$basearch/debug/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel${releasever_minor:+-z}-testing-debug-$releasever&arch=$basearch
+#baseurl=https://download.example/pub/epel/testing/$releasever${stream:+s}/Everything/$basearch/debug/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-debug-$releasever${stream:+s}&arch=$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever_major
 gpgcheck=1
 repo_gpgcheck=0
@@ -27,8 +27,8 @@ enabled=0
 name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch - Source
 # It is much more secure to use the metalink, but if you wish to use a local mirror
 # place its address here.
-#baseurl=https://download.example/pub/epel/testing/$releasever${releasever_minor:+z}/Everything/source/tree/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel${releasever_minor:+-z}-testing-source-$releasever&arch=source
+#baseurl=https://download.example/pub/epel/testing/$releasever${stream:+s}/Everything/source/tree/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-testing-source-$releasever${stream:+s}&arch=source
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever_major
 gpgcheck=1
 repo_gpgcheck=0
